@@ -11,14 +11,14 @@ from datetime import datetime, timedelta
 API_KEY = "364749be69d6482ab58547983ead1d80"
 
 if not API_KEY:
-    raise ValueError("API key not found. Make sure it's in your .env file.")
+    raise ValueError("API key not found")
 
 BASE_URL = "https://newsapi.org/v2/everything"
 
 # Use keywords instead of categories
 keywords = ["technology", "sports", "business", "science", "health", "entertainment"]
 
-# Get articles from last 7 days
+# get articles from last 7 days
 from_date = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
 
 all_articles = []
@@ -36,7 +36,10 @@ for keyword in keywords:
         "apiKey": API_KEY
     }
 
+    # sending GET request to NewsAPI
     response = requests.get(BASE_URL, params=params)
+    
+    # converting to json format
     data = response.json()
 
     if data.get("status") != "ok":
@@ -44,9 +47,11 @@ for keyword in keywords:
         continue
 
     for article in data["articles"]:
+        # boundary
         if not article.get("title") or not article.get("description"):
             continue
 
+        # only has relevant fields
         cleaned_article = {
             "id": article_id,
             "title": article["title"].strip(),

@@ -6,10 +6,14 @@ from sklearn.metrics.pairwise import cosine_similarity
 class NewsIndexer:
     def __init__(self, json_path="articles.json"):
         self.articles = self.load_articles(json_path)
+        
+        # initializing td idf vectorizer
         self.vectorizer = TfidfVectorizer(stop_words="english")
         self.tfidf_matrix = None
+        
         self.build_index()
 
+    # loads article data into memroy
     def load_articles(self, path):
         with open(path, "r") as f:
             return json.load(f)
@@ -19,8 +23,9 @@ class NewsIndexer:
             article["title"] + " " + article["description"]
             for article in self.articles
         ]
+        # converting text documents into tf idf vectors
         self.tfidf_matrix = self.vectorizer.fit_transform(texts)
-        print("TF-IDF index built successfully.")
+        print("tf idf index built successfully")
 
     # used cosine similarity
     def search(self, query, top_k=5):
@@ -30,12 +35,15 @@ class NewsIndexer:
         ranked_indices = similarities.argsort()[::-1][:top_k]
 
         results = []
-        for idx in ranked_indices:
-            article = self.articles[idx]
+
+        # retrieving top ranked articles
+        for index in ranked_indices:
+            article = self.articles[index]
+            
             results.append({
                 "title": article["title"],
                 "description": article["description"],
-                "score": float(similarities[idx])
+                "score": float(similarities[index])
             })
 
         return results
