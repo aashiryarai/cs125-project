@@ -24,3 +24,4 @@
 ```bash
 python fetch_news.py
 python index.py
+python test_system.py 
