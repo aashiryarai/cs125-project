@@ -1,0 +1,146 @@
+{
+  "user_id": "demo_user",
+  "preferences": {
+    "followed_keywords": [
+      "technology",
+      "science"
+    ],
+    "avoided_keywords": [
+      "sports"
+    ],
+    "preferred_session_length": "medium",
+    "preferred_article_depth": "mixed"
+  },
+  "interaction_history": [
+    {
+      "article_id": 1,
+      "type": "click",
+      "timestamp": "2026-02-14T20:55:41.060774",
+      "reading_time": null
+    },
+    {
+      "article_id": 1,
+      "type": "complete",
+      "timestamp": "2026-02-14T20:55:41.060894",
+      "reading_time": 120
+    },
+    {
+      "article_id": 5,
+      "type": "save",
+      "timestamp": "2026-02-14T20:55:41.060996",
+      "reading_time": null
+    },
+    {
+      "article_id": 10,
+      "type": "skip",
+      "timestamp": "2026-02-14T20:55:41.061090",
+      "reading_time": null
+    },
+    {
+      "article_id": 1,
+      "type": "click",
+      "timestamp": "2026-02-14T20:58:58.162076",
+      "reading_time": null
+    },
+    {
+      "article_id": 1,
+      "type": "complete",
+      "timestamp": "2026-02-14T20:58:58.162210",
+      "reading_time": 120
+    },
+    {
+      "article_id": 5,
+      "type": "save",
+      "timestamp": "2026-02-14T20:58:58.162326",
+      "reading_time": null
+    },
+    {
+      "article_id": 10,
+      "type": "skip",
+      "timestamp": "2026-02-14T20:58:58.162433",
+      "reading_time": null
+    },
+    {
+      "article_id": 1,
+      "type": "click",
+      "timestamp": "2026-02-14T21:03:52.848982",
+      "reading_time": null
+    },
+    {
+      "article_id": 1,
+      "type": "complete",
+      "timestamp": "2026-02-14T21:03:52.849124",
+      "reading_time": 120
+    },
+    {
+      "article_id": 5,
+      "type": "save",
+      "timestamp": "2026-02-14T21:03:52.849252",
+      "reading_time": null
+    },
+    {
+      "article_id": 10,
+      "type": "skip",
+      "timestamp": "2026-02-14T21:03:52.849376",
+      "reading_time": null
+    },
+    {
+      "article_id": 1,
+      "type": "click",
+      "timestamp": "2026-02-14T21:04:29.146789",
+      "reading_time": null
+    },
+    {
+      "article_id": 1,
+      "type": "complete",
+      "timestamp": "2026-02-14T21:04:29.146936",
+      "reading_time": 120
+    },
+    {
+      "article_id": 5,
+      "type": "save",
+      "timestamp": "2026-02-14T21:04:29.147074",
+      "reading_time": null
+    },
+    {
+      "article_id": 10,
+      "type": "skip",
+      "timestamp": "2026-02-14T21:04:29.147207",
+      "reading_time": null
+    },
+    {
+      "article_id": 1,
+      "type": "click",
+      "timestamp": "2026-02-14T21:06:03.190358",
+      "reading_time": null
+    },
+    {
+      "article_id": 1,
+      "type": "complete",
+      "timestamp": "2026-02-14T21:06:03.190527",
+      "reading_time": 120
+    },
+    {
+      "article_id": 5,
+      "type": "save",
+      "timestamp": "2026-02-14T21:06:03.190678",
+      "reading_time": null
+    },
+    {
+      "article_id": 10,
+      "type": "skip",
+      "timestamp": "2026-02-14T21:06:03.190827",
+      "reading_time": null
+    }
+  ],
+  "topic_scores": {
+    "technology": 0.6
+  },
+  "source_scores": {
+    "The Times of India": 1.0,
+    "Business Standard": 1.0,
+    "Hackaday": -1.0
+  },
+  "created_at": "2026-02-14T20:55:41.060474",
+  "last_updated": "2026-02-14T21:06:03.241250"
+}
