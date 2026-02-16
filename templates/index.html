@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal News Feed</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #0f0f12 0%, #1a1a22 50%, #12121a 100%);
+      color: #e4e4e7;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    header {
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #fff 0%, #a1a1aa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      color: #71717a;
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: 1px solid #27272a;
+      background: #18181b;
+      color: #e4e4e7;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    .search-bar input::placeholder {
+      color: #52525b;
+    }
+    .search-bar input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+    .search-bar button {
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      border: none;
+      background: #3b82f6;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .search-bar button:hover {
+      background: #2563eb;
+    }
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .tab {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid #27272a;
+      color: #a1a1aa;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+    .tab.active {
+      background: #27272a;
+      color: white;
+    }
+    .tab:hover:not(.active) {
+      background: #27272a;
+    }
+    .article-card {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .article-card:hover {
+      border-color: #3f3f46;
+    }
+    .article-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #fafafa;
+    }
+    .article-card p {
+      font-size: 0.9rem;
+      color: #a1a1aa;
+      margin-bottom: 0.75rem;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: #71717a;
+    }
+    .article-meta span {
+      display: inline-flex;
+      align-items: center;
+    }
+    .keyword-tag {
+      background: #27272a;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: #a1a1aa;
+    }
+    .explanation {
+      font-size: 0.8rem;
+      color: #3b82f6;
+      margin-top: 0.5rem;
+    }
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .actions button {
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      border: 1px solid #3f3f46;
+      background: transparent;
+      color: #a1a1aa;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .actions button:hover {
+      background: #27272a;
+      color: white;
+    }
+    .actions button.saved {
+      background: #22c55e20;
+      border-color: #22c55e;
+      color: #22c55e;
+    }
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #71717a;
+    }
+    .empty {
+      text-align: center;
+      padding: 2rem;
+      color: #71717a;
+    }
+    .preferences-panel {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .preferences-panel h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      color: #fafafa;
+    }
+    .preferences-panel p {
+      font-size: 0.85rem;
+      color: #a1a1aa;
+      margin-bottom: 0.5rem;
+    }
+    .pref-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .pref-tag {
+      background: #27272a;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: #a1a1aa;
+    }
+    .pref-tag.followed { color: #22c55e; }
+    .pref-tag.avoided { color: #ef4444; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Personal News Feed</h1>
+      <p class="subtitle">Personalized recommendations based on your interests</p>
+    </header>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search articles (e.g. AI, climate, sports...)" />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="feed">For You</button>
+      <button class="tab" data-tab="search-results">Search Results</button>
+    </div>
+
+    <div class="preferences-panel">
+      <h3>Your preferences</h3>
+      <p>Followed: <span id="followedTags" class="pref-tags"></span></p>
+      <p>Avoided: <span id="avoidedTags" class="pref-tags"></span></p>
+    </div>
+
+    <div id="feed" class="tab-content">
+      <div id="feedLoading" class="loading">Loading your feed...</div>
+      <div id="feedArticles" class="hidden"></div>
+    </div>
+
+    <div id="search-results" class="tab-content hidden">
+      <div id="searchEmpty" class="empty">Enter a search term above to find articles</div>
+      <div id="searchLoading" class="loading hidden">Searching...</div>
+      <div id="searchArticles" class="hidden"></div>
+    </div>
+  </div>
+
+  <script>
+    const feedEl = document.getElementById('feedArticles');
+    const feedLoading = document.getElementById('feedLoading');
+    const searchArticles = document.getElementById('searchArticles');
+    const searchLoading = document.getElementById('searchLoading');
+    const searchEmpty = document.getElementById('searchEmpty');
+    const searchInput = document.getElementById('searchInput');
+
+    function renderArticle(card, data, showExplanation = true) {
+      const a = data.article || data;
+      const html = `
+        <div class="article-card" data-id="${a.id}">
+          <h3>${escapeHtml(a.title)}</h3>
+          <p>${escapeHtml(a.description || '').slice(0, 180)}${(a.description && a.description.length > 180) ? '...' : ''}</p>
+          <div class="article-meta">
+            <span>${escapeHtml(a.source)}</span>
+            <span class="keyword-tag">${escapeHtml(a.keyword || 'general')}</span>
+            <span>${formatDate(a.publishedAt)}</span>
+          </div>
+          ${showExplanation && data.explanation ? `<div class="explanation">${escapeHtml(data.explanation)}</div>` : ''}
+          <div class="actions">
+            <button class="save-btn" data-id="${a.id}">Save</button>
+            <button class="skip-btn" data-id="${a.id}">Skip</button>
+          </div>
+        </div>
+      `;
+      card.innerHTML += html;
+    }
+
+    function escapeHtml(s) {
+      if (!s) return '';
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '';
+      try {
+        const d = new Date(iso);
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      } catch { return iso; }
+    }
+
+    function recordAction(articleId, action) {
+      fetch('/api/interaction', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ article_id: articleId, action })
+      });
+    }
+
+    function bindArticleActions(container) {
+      container.querySelectorAll('.save-btn').forEach(btn => {
+        btn.onclick = () => {
+          recordAction(parseInt(btn.dataset.id), 'save');
+          btn.classList.add('saved');
+          btn.textContent = 'Saved';
+        };
+      });
+      container.querySelectorAll('.skip-btn').forEach(btn => {
+        btn.onclick = () => {
+          recordAction(parseInt(btn.dataset.id), 'skip');
+          btn.closest('.article-card').style.opacity = '0.5';
+        };
+      });
+    }
+
+    async function loadFeed() {
+      feedLoading.classList.remove('hidden');
+      feedEl.classList.add('hidden');
+      feedEl.innerHTML = '';
+      try {
+        const res = await fetch('/api/recommendations?count=15');
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+        feedLoading.classList.add('hidden');
+        if (data.length === 0) {
+          feedEl.innerHTML = '<div class="empty">No recommendations yet. Try adjusting your preferences.</div>';
+        } else {
+          data.forEach(r => renderArticle(feedEl, r, true));
+          bindArticleActions(feedEl);
+        }
+        feedEl.classList.remove('hidden');
+      } catch (e) {
+        feedLoading.textContent = 'Error loading feed: ' + e.message;
+      }
+    }
+
+    async function doSearch() {
+      const q = searchInput.value.trim();
+      if (!q) return;
+      document.querySelector('[data-tab="search-results"]').classList.add('active');
+      document.querySelector('[data-tab="feed"]').classList.remove('active');
+      document.getElementById('feed').classList.add('hidden');
+      document.getElementById('search-results').classList.remove('hidden');
+
+      searchEmpty.classList.add('hidden');
+      searchLoading.classList.remove('hidden');
+      searchArticles.classList.add('hidden');
+      searchArticles.innerHTML = '';
+      try {
+        const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+        searchLoading.classList.add('hidden');
+        if (data.length === 0) {
+          searchArticles.innerHTML = '<div class="empty">No articles found for "' + escapeHtml(q) + '"</div>';
+        } else {
+          data.forEach(r => renderArticle(searchArticles, r, true));
+          bindArticleActions(searchArticles);
+        }
+        searchArticles.classList.remove('hidden');
+      } catch (e) {
+        searchLoading.textContent = 'Search failed: ' + e.message;
+      }
+    }
+
+    async function loadPreferences() {
+      try {
+        const res = await fetch('/api/preferences');
+        const p = await res.json();
+        document.getElementById('followedTags').innerHTML = (p.followed_keywords || []).map(k => 
+          `<span class="pref-tag followed">${escapeHtml(k)}</span>`
+        ).join('');
+        document.getElementById('avoidedTags').innerHTML = (p.avoided_keywords || []).map(k => 
+          `<span class="pref-tag avoided">${escapeHtml(k)}</span>`
+        ).join('');
+      } catch (e) {}
+    }
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.onclick = () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('feed').classList.toggle('hidden', tab.dataset.tab !== 'feed');
+        document.getElementById('search-results').classList.toggle('hidden', tab.dataset.tab !== 'search-results');
+      };
+    });
+
+    document.getElementById('searchBtn').onclick = doSearch;
+    searchInput.onkeydown = (e) => { if (e.key === 'Enter') doSearch(); };
+
+    loadFeed();
+    loadPreferences();
+  </script>
+</body>
+</html>

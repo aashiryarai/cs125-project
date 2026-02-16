@@ -1,0 +1,17 @@
+{
+  "user_id": "web_user",
+  "preferences": {
+    "followed_keywords": [
+      "technology",
+      "science"
+    ],
+    "avoided_keywords": [],
+    "preferred_session_length": "medium",
+    "preferred_article_depth": "mixed"
+  },
+  "interaction_history": [],
+  "topic_scores": {},
+  "source_scores": {},
+  "created_at": "2026-02-15T15:10:32.082572",
+  "last_updated": "2026-02-15T19:21:08.904283"
+}
