@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results - Personal News Feed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .back-link {
+      display: inline-block;
+      color: #667eea;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    .back-link:hover {
+      color: #764ba2;
+    }
+    header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    h1 {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .search-info {
+      color: #a0a0a0;
+      font-size: 1.05rem;
+    }
+    .search-info strong {
+      color: #667eea;
+    }
+    .search-box {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .search-box form {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 0.875rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 1rem;
+    }
+    .search-box button {
+      padding: 0.875rem 2rem;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .article-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    .article-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+    .article-card p {
+      color: #b0b0b0;
+      margin-bottom: 1rem;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+    }
+    .meta-badge {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      color: #a0a0a0;
+    }
+    .meta-badge.keyword {
+      background: rgba(102, 126, 234, 0.2);
+      color: #667eea;
+    }
+    .score-breakdown {
+      background: rgba(102, 126, 234, 0.1);
+      border: 1px solid rgba(102, 126, 234, 0.3);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .score-breakdown strong {
+      color: #667eea;
+    }
+    .explanation {
+      background: rgba(255, 193, 7, 0.15);
+      border-left: 3px solid #ffc107;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #ffc107;
+    }
+    .empty {
+      text-align: center;
+      padding: 3rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to Feed</a>
+
+    <header>
+      <h1>🔍 Search Results</h1>
+      {% if query %}
+        <p class="search-info">
+          Found <strong>{{ results|length }} results</strong> for "<strong>{{ query }}</strong>"
+        </p>
+      {% endif %}
+    </header>
+
+    <div class="search-box">
+      <form action="/search" method="get">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search articles..." required>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    {% if query %}
+      {% if results %}
+        {% for result in results %}
+        <div class="article-card">
+          <h3>{{ result.article.title }}</h3>
+          <p>{{ result.article.description }}</p>
+
+          <div class="article-meta">
+            <span class="meta-badge keyword">{{ result.article.keyword }}</span>
+            <span class="meta-badge">{{ result.article.source }}</span>
+          </div>
+
+          <div class="explanation">
+            💡 {{ result.explanation }}
+          </div>
+
+          <div class="score-breakdown">
+            <strong>Ranking Breakdown:</strong><br>
+            📊 TF-IDF Relevance: {{ "%.3f"|format(result.tfidf_score) }}<br>
+            👤 Personalization: {{ "%.3f"|format(result.personalization_score) }}<br>
+            🎯 Combined Score: {{ "%.3f"|format(result.combined_score) }} (70% relevance + 30% personal)
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty">
+          <h2 style="color: #666; margin-bottom: 1rem;">No results found</h2>
+          <p>Try different keywords or check your spelling</p>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="empty">
+        <h2 style="color: #666; margin-bottom: 1rem;">Enter a search term</h2>
+        <p>Search for topics like "artificial intelligence", "climate change", etc.</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

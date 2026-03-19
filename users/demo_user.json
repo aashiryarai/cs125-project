@@ -1,0 +1,45 @@
+{
+  "user_id": "demo_user",
+  "preferences": {
+    "followed_keywords": [
+      "sports",
+      "entertainment"
+    ],
+    "avoided_keywords": [],
+    "preferred_session_length": "short"
+  },
+  "interaction_history": [
+    {
+      "article_id": 95,
+      "type": "click",
+      "timestamp": "2026-02-15T00:33:58.944115"
+    },
+    {
+      "article_id": 95,
+      "type": "click",
+      "timestamp": "2026-02-15T00:34:01.391504"
+    },
+    {
+      "article_id": 96,
+      "type": "click",
+      "timestamp": "2026-02-15T00:34:08.057951"
+    },
+    {
+      "article_id": 95,
+      "type": "skip",
+      "timestamp": "2026-02-15T00:34:11.753839"
+    },
+    {
+      "article_id": 95,
+      "type": "click",
+      "timestamp": "2026-02-15T00:34:22.023014"
+    },
+    {
+      "article_id": 95,
+      "type": "skip",
+      "timestamp": "2026-02-15T00:34:25.275262"
+    }
+  ],
+  "topic_scores": {},
+  "source_scores": {}
+}

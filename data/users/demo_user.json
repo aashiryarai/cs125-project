@@ -3,10 +3,11 @@
   "preferences": {
     "followed_keywords": [
       "technology",
-      "science"
+      "business",
+      "sports"
     ],
     "avoided_keywords": [
-      "sports"
+      "technology"
     ],
     "preferred_session_length": "medium",
     "preferred_article_depth": "mixed"
@@ -131,16 +132,133 @@
       "type": "skip",
       "timestamp": "2026-02-14T21:06:03.190827",
       "reading_time": null
+    },
+    {
+      "article_id": 96,
+      "type": "skip",
+      "timestamp": "2026-03-19T00:41:19.764026",
+      "reading_time": null
+    },
+    {
+      "article_id": 218,
+      "type": "save",
+      "timestamp": "2026-03-19T00:41:36.793241",
+      "reading_time": null
+    },
+    {
+      "article_id": 227,
+      "type": "click",
+      "timestamp": "2026-03-19T00:41:43.195256",
+      "reading_time": null
+    },
+    {
+      "article_id": 264,
+      "type": "skip",
+      "timestamp": "2026-03-19T00:41:58.211707",
+      "reading_time": null
+    },
+    {
+      "article_id": 254,
+      "type": "skip",
+      "timestamp": "2026-03-19T00:42:00.777038",
+      "reading_time": null
+    },
+    {
+      "article_id": 216,
+      "type": "click",
+      "timestamp": "2026-03-19T00:42:06.010007",
+      "reading_time": null
+    },
+    {
+      "article_id": 216,
+      "type": "save",
+      "timestamp": "2026-03-19T00:42:08.698149",
+      "reading_time": null
+    },
+    {
+      "article_id": 234,
+      "type": "save",
+      "timestamp": "2026-03-19T00:42:22.299982",
+      "reading_time": null
+    },
+    {
+      "article_id": 439,
+      "type": "save",
+      "timestamp": "2026-03-19T00:42:29.176755",
+      "reading_time": null
+    },
+    {
+      "article_id": 234,
+      "type": "skip",
+      "timestamp": "2026-03-19T00:44:32.179680",
+      "reading_time": null
+    },
+    {
+      "article_id": 239,
+      "type": "save",
+      "timestamp": "2026-03-19T00:44:42.297964",
+      "reading_time": null
+    },
+    {
+      "article_id": 391,
+      "type": "save",
+      "timestamp": "2026-03-19T01:18:48.321862",
+      "reading_time": null
+    },
+    {
+      "article_id": 11,
+      "type": "save",
+      "timestamp": "2026-03-19T01:20:53.938183",
+      "reading_time": null
+    },
+    {
+      "article_id": 17,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:20:55.973983",
+      "reading_time": null
+    },
+    {
+      "article_id": 22,
+      "type": "click",
+      "timestamp": "2026-03-19T01:21:08.862045",
+      "reading_time": null
+    },
+    {
+      "article_id": 22,
+      "type": "click",
+      "timestamp": "2026-03-19T01:21:15.978382",
+      "reading_time": null
+    },
+    {
+      "article_id": 5,
+      "type": "click",
+      "timestamp": "2026-03-19T01:21:30.805330",
+      "reading_time": null
+    },
+    {
+      "article_id": 96,
+      "type": "save",
+      "timestamp": "2026-03-19T01:40:27.570876",
+      "reading_time": null
+    },
+    {
+      "article_id": 264,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:51:00.578448",
+      "reading_time": null
     }
   ],
   "topic_scores": {
-    "technology": 0.6
+    "technology": 0.6129032258064516,
+    "sports": 0.3333333333333333,
+    "business": 0.42857142857142855,
+    "health": 1.0
   },
   "source_scores": {
-    "The Times of India": 1.0,
-    "Business Standard": 1.0,
+    "The Times of India": 0.8823529411764706,
+    "Business Standard": 0.8378378378378378,
     "Hackaday": -1.0
   },
   "created_at": "2026-02-14T20:55:41.060474",
-  "last_updated": "2026-02-14T21:06:03.241250"
+  "last_updated": "2026-03-19T02:01:41.564721"
 }

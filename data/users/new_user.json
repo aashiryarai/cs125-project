@@ -1,0 +1,122 @@
+{
+  "user_id": "new_user",
+  "preferences": {
+    "followed_keywords": [
+      "technology",
+      "science",
+      "business"
+    ],
+    "avoided_keywords": [
+      "entertainment",
+      "health"
+    ],
+    "preferred_session_length": "short",
+    "preferred_article_depth": "mixed"
+  },
+  "interaction_history": [
+    {
+      "article_id": 6,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:41:38.404016",
+      "reading_time": null
+    },
+    {
+      "article_id": 95,
+      "type": "save",
+      "timestamp": "2026-03-19T01:41:49.385083",
+      "reading_time": null
+    },
+    {
+      "article_id": 96,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:41:51.386512",
+      "reading_time": null
+    },
+    {
+      "article_id": 95,
+      "type": "click",
+      "timestamp": "2026-03-19T01:43:15.138551",
+      "reading_time": null
+    },
+    {
+      "article_id": 112,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:43:37.623785",
+      "reading_time": null
+    },
+    {
+      "article_id": 95,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:43:41.967597",
+      "reading_time": null
+    },
+    {
+      "article_id": 101,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:43:52.918889",
+      "reading_time": null
+    },
+    {
+      "article_id": 100,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:43:54.119517",
+      "reading_time": null
+    },
+    {
+      "article_id": 99,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:43:55.790103",
+      "reading_time": null
+    },
+    {
+      "article_id": 195,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:44:10.342648",
+      "reading_time": null
+    },
+    {
+      "article_id": 196,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:44:11.683872",
+      "reading_time": null
+    },
+    {
+      "article_id": 197,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:44:12.902109",
+      "reading_time": null
+    },
+    {
+      "article_id": 295,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:51:32.196211",
+      "reading_time": null
+    },
+    {
+      "article_id": 296,
+      "type": "skip",
+      "timestamp": "2026-03-19T01:51:33.612136",
+      "reading_time": null
+    }
+  ],
+  "topic_scores": {
+    "technology": -1.0,
+    "sports": -0.3333333333333333,
+    "business": -1.0,
+    "science": -1.0
+  },
+  "source_scores": {
+    "Financial Post": -1.0,
+    "Knoxville News Sentinel": 0.5,
+    "The Times of India": -1.0,
+    "New York Post": -1.0,
+    "Slashdot.org": -1.0,
+    "Pypi.org": -1.0,
+    "Thegatewaypundit.com": -1.0,
+    "Activistpost.com": -1.0,
+    "Lifesciencesworld.com": -1.0,
+    "Linkedin.com": -1.0
+  },
+  "created_at": "2026-03-19T01:40:41.107547",
+  "last_updated": "2026-03-19T02:02:00.490027"
+}

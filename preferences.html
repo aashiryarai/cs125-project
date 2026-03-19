@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preferences - Personal News Feed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .back-link {
+      display: inline-block;
+      color: #667eea;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+    .back-link:hover {
+      color: #764ba2;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #a0a0a0;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin: 2rem 0 1rem;
+    }
+    .form-group {
+      margin-bottom: 2rem;
+    }
+    label {
+      display: block;
+      color: #b0b0b0;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .checkbox-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .checkbox-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .checkbox-item input {
+      margin-right: 0.75rem;
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+    }
+    .checkbox-item input:checked + span {
+      color: #fff;
+      font-weight: 600;
+    }
+    .checkbox-item.followed {
+      border-color: rgba(34, 197, 94, 0.4);
+      background: rgba(34, 197, 94, 0.1);
+    }
+    .checkbox-item.avoided {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.1);
+    }
+    select {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    option {
+      background: #2d2d44;
+      color: #fff;
+    }
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e0e0e0;
+      margin-left: 1rem;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .button-group {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .demo-note {
+      background: rgba(102, 126, 234, 0.15);
+      border-left: 4px solid #667eea;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      color: #a0c4ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Back to Feed</a>
+    
+    <div class="card">
+      <h1>⚙️ Preferences</h1>
+      <p class="subtitle">Customize your news feed experience</p>
+
+      <form id="preferencesForm">
+        <h2>Topics to Follow</h2>
+        <div class="form-group">
+          <label>Select topics you're interested in:</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item {% if 'technology' in user_prefs.followed_keywords %}followed{% endif %}">
+              <input type="checkbox" name="followed_keywords" value="technology" 
+                {% if 'technology' in user_prefs.followed_keywords %}checked{% endif %}>
+              <span>💻 Technology</span>
+            </label>
+            <label class="checkbox-item {% if 'science' in user_prefs.followed_keywords %}followed{% endif %}">
+              <input type="checkbox" name="followed_keywords" value="science" 
+                {% if 'science' in user_prefs.followed_keywords %}checked{% endif %}>
+              <span>🔬 Science</span>
+            </label>
+            <label class="checkbox-item {% if 'business' in user_prefs.followed_keywords %}followed{% endif %}">
+              <input type="checkbox" name="followed_keywords" value="business" 
+                {% if 'business' in user_prefs.followed_keywords %}checked{% endif %}>
+              <span>💼 Business</span>
+            </label>
+            <label class="checkbox-item {% if 'health' in user_prefs.followed_keywords %}followed{% endif %}">
+              <input type="checkbox" name="followed_keywords" value="health" 
+                {% if 'health' in user_prefs.followed_keywords %}checked{% endif %}>
+              <span>🏥 Health</span>
+            </label>
+            <label class="checkbox-item {% if 'sports' in user_prefs.followed_keywords %}followed{% endif %}">
+              <input type="checkbox" name="followed_keywords" value="sports" 
+                {% if 'sports' in user_prefs.followed_keywords %}checked{% endif %}>
+              <span>⚽ Sports</span>
+            </label>
+            <label class="checkbox-item {% if 'entertainment' in user_prefs.followed_keywords %}followed{% endif %}">
+              <input type="checkbox" name="followed_keywords" value="entertainment" 
+                {% if 'entertainment' in user_prefs.followed_keywords %}checked{% endif %}>
+              <span>🎬 Entertainment</span>
+            </label>
+          </div>
+        </div>
+
+        <h2>Topics to Avoid</h2>
+        <div class="form-group">
+          <label>Select topics you don't want to see:</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item {% if 'sports' in user_prefs.avoided_keywords %}avoided{% endif %}">
+              <input type="checkbox" name="avoided_keywords" value="sports" 
+                {% if 'sports' in user_prefs.avoided_keywords %}checked{% endif %}>
+              <span>⚽ Sports</span>
+            </label>
+            <label class="checkbox-item {% if 'entertainment' in user_prefs.avoided_keywords %}avoided{% endif %}">
+              <input type="checkbox" name="avoided_keywords" value="entertainment" 
+                {% if 'entertainment' in user_prefs.avoided_keywords %}checked{% endif %}>
+              <span>🎬 Entertainment</span>
+            </label>
+            <label class="checkbox-item {% if 'technology' in user_prefs.avoided_keywords %}avoided{% endif %}">
+              <input type="checkbox" name="avoided_keywords" value="technology" 
+                {% if 'technology' in user_prefs.avoided_keywords %}checked{% endif %}>
+              <span>💻 Technology</span>
+            </label>
+          </div>
+        </div>
+
+        <h2>Session Length (Context)</h2>
+        <div class="form-group">
+          <label>How much time do you have for news?</label>
+          <select name="session_length">
+            <option value="short" {% if user_prefs.preferred_session_length == 'short' %}selected{% endif %}>
+              Short (3 articles, ~5 minutes)
+            </option>
+            <option value="medium" {% if user_prefs.preferred_session_length == 'medium' %}selected{% endif %}>
+              Medium (5 articles, ~10 minutes)
+            </option>
+            <option value="long" {% if user_prefs.preferred_session_length == 'long' %}selected{% endif %}>
+              Long (8 articles, ~15 minutes)
+            </option>
+          </select>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn btn-primary">Save Preferences</button>
+          <a href="/" class="btn btn-secondary" style="text-decoration: none; text-align: center; line-height: 1rem;">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Update visual feedback when checkboxes change
+    document.querySelectorAll('.checkbox-item input').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const label = this.closest('.checkbox-item');
+        const isFollowed = this.name === 'followed_keywords';
+        if (this.checked) {
+          label.classList.add(isFollowed ? 'followed' : 'avoided');
+        } else {
+          label.classList.remove('followed', 'avoided');
+        }
+      });
+    });
+
+    document.getElementById('preferencesForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const preferences = {
+        followed_keywords: formData.getAll('followed_keywords'),
+        avoided_keywords: formData.getAll('avoided_keywords'),
+        session_length: formData.get('session_length')
+      };
+
+      // Show loading state
+      const submitBtn = this.querySelector('.btn-primary');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = '⏳ Saving...';
+      submitBtn.disabled = true;
+
+      fetch('/api/preferences', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(preferences)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          submitBtn.textContent = '✓ Saved!';
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 500);
+        } else {
+          throw new Error(data.error || 'Save failed');
+        }
+      })
+      .catch(error => {
+        alert('Error saving preferences: ' + error.message);
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>
